@@ -1,0 +1,134 @@
+{
+  "stand": "24.11.2026",
+  "quellen": {
+    "sz_taufe": {"name": "Stuttgarter Zeitung: Wie viel Geld schenkt man zur Taufe?", "url": "https://www.stuttgarter-zeitung.de/wissen/wie-viel-geld-schenkt-man-zur-taufe-mhsd-78870978.html", "stand": "29.01.2026"},
+    "h24_taufe": {"name": "heidelberg24: Geldgeschenk zur Taufe 2024", "url": "https://www.heidelberg24.de/ratgeber/taufpate-verwandte-bekannte-freunde-gaeste-feierlichkeit-taufe-geld-geschenk-geldbetrag-zr-92339517.html", "stand": "2024"},
+    "spk": {"name": "Sparkasse: Geldgeschenke für jeden Anlass", "url": "https://www.sparkasse.de/aktuelles/weihnachten-geldgeschenke.html", "stand": "31.05.2024 (laut Seite)"},
+    "gelbe": {"name": "Gelbe Seiten Ratgeber: Was und wie viel schenkt man zu Taufe, Hochzeit und Co?", "url": "https://www.gelbeseiten.de/ratgeber/gl/was-und-wie-viel-schenkt-man-zu-taufe-hochzeit-und-co", "stand": "ohne Datum, abgerufen 24.11.2026"},
+    "sz_kommunion": {"name": "Stuttgarter Zeitung: Wie viel Geld schenkt man zur Kommunion?", "url": "https://www.stuttgarter-zeitung.de/wissen/wie-viel-geld-schenkt-man-zur-kommunion-mhsd-78955250.html", "stand": "30.05.2023"},
+    "sz_konf": {"name": "Stuttgarter Zeitung: Wie viel Geld schenkt man zur Konfirmation?", "url": "https://www.stuttgarter-zeitung.de/wissen/wie-viel-geld-soll-man-zur-konfirmation-schenken-ueberblick-mhsd-78820609.html", "stand": "26.03.2026"},
+    "biallo": {"name": "biallo: Wie viel Geld zur Konfirmation, Firmung oder Jugendweihe?", "url": "https://www.biallo.de/geldanlage/ratgeber/geschenke-fuer-kinder", "stand": "11.06.2024"},
+    "h24_konf": {"name": "heidelberg24: Wie viel Geld schenkt man zur Konfirmation?", "url": "https://www.heidelberg24.de/politik-und-wirtschaft/ist-angemessen-wie-viel-geld-schenkt-man-zur-konfirmation-das-zr-93725048.html", "stand": "16.05.2025"},
+    "berl": {"name": "Berliner Sparkasse: Jugendweihe und Konfirmation", "url": "https://www.berliner-sparkasse.de/de/home/privatkunden/kopfgeld-magazin/we-are-family/JugendweiheundKonfirmation.html", "stand": "ohne Datum, abgerufen 24.11.2026"},
+    "sz_einschulung": {"name": "Stuttgarter Zeitung: Was kann man zur Einschulung schenken?", "url": "https://www.stuttgarter-zeitung.de/wissen/was-kann-man-zur-einschulung-schenken-mhsd-78997246.html", "stand": "22.08.2024"},
+    "sz_abitur": {"name": "Stuttgarter Zeitung: Wie viel Geld zum Abitur schenken?", "url": "https://www.stuttgarter-zeitung.de/wissen/wie-viel-geld-zum-abitur-schenken-mhsd-79220585.html", "stand": "23.04.2024"},
+    "spk_hochzeit": {"name": "Sparkasse: Geldgeschenke zur Hochzeit", "url": "https://www.sparkasse.de/aktuelles/geldgeschenke.html", "stand": "01.06.2026 (laut Seite)"},
+    "sz_hochzeit": {"name": "Stuttgarter Zeitung: Wie viel schenkt man zur Hochzeit?", "url": "https://www.stuttgarter-zeitung.de/hochzeitswelt/wie-viel-schenkt-man-zur-hochzeit-tipps-78961854.html", "stand": "29.03.2025"},
+    "h24_hochzeit": {"name": "heidelberg24: Wie viel Geld zur Hochzeit schenken?", "url": "https://www.heidelberg24.de/politik-und-wirtschaft/wie-viel-geld-zur-hochzeit-schenken-diese-faustregel-hilft-wirklich-weiter-zr-93712908.html", "stand": "03.05.2025"},
+    "sz_geburtstag": {"name": "Stuttgarter Zeitung: Wie viel Geld schenkt man zum Geburtstag?", "url": "https://www.stuttgarter-zeitung.de/wissen/wie-viel-geld-zum-geburtstag-schenken-mhsd-79221195.html", "stand": "19.10.2023"},
+    "dji": {"name": "Taschengeld-Empfehlung des Deutschen Jugendinstituts (DJI), Erhebung 2025, wiedergegeben von der DKB", "url": "https://www.dkb.de/finanzwissen/taschengeld", "stand": "Dezember 2025"},
+    "hde": {"name": "Umfrage im Auftrag des Handelsverbands HDE (Handelsblatt Research Institute, rund 2.000 Befragte)", "url": "https://lebensmittelpraxis.de/handel-aktuell/zentrale-management/50248-handelsverband-deutschland-hde-rechnet-mit-einem-stabilen-weihnachtsgeschaeft.html", "stand": "November 2026"}
+  },
+  "rollen": {
+    "eltern": "Eltern",
+    "grosseltern": "Großeltern",
+    "pate": "Pate (Patentante, Patenonkel)",
+    "geschwister": "Geschwister",
+    "tante": "Tante, Onkel, Verwandte",
+    "trauzeuge": "Trauzeuge",
+    "engefreunde": "Enge Freunde",
+    "freunde": "Freunde",
+    "kollegen": "Kollegen",
+    "bekannte": "Bekannte, Nachbarn"
+  },
+  "anlaesse": {
+    "taufe": {"name": "Taufe", "zur": "zur Taufe", "saison": "ganzjährig",
+      "werte": {
+        "pate": [["sz_taufe",100,150,""],["h24_taufe",100,150,""],["spk",30,null,"„Familie und Paten: ab 30 €“"],["gelbe",100,150,""]],
+        "grosseltern": [["sz_taufe",50,100,"enger Familienkreis"],["h24_taufe",100,150,"Taufpaten und Großeltern"],["spk",30,null,"„Familie: ab 30 €“"],["gelbe",50,100,"enger Familienkreis"]],
+        "tante": [["sz_taufe",50,100,"enger Familienkreis"],["h24_taufe",50,100,""],["spk",30,null,"„Familie: ab 30 €“"],["gelbe",50,100,"enger Familienkreis"]],
+        "freunde": [["sz_taufe",20,50,""],["spk",20,30,""]],
+        "bekannte": [["sz_taufe",10,20,"Bekannte, Nachbarn, entfernte Verwandte"],["spk",10,20,""]]
+      }},
+    "kommunion": {"name": "Kommunion", "zur": "zur Kommunion", "saison": "April bis Mai",
+      "werte": {
+        "eltern": [["sz_kommunion",50,100,"Eltern und Paten"],["gelbe",100,250,"Eltern und Paten"]],
+        "pate": [["sz_kommunion",50,100,"Eltern und Paten"],["spk",100,200,"Familie und Paten"],["gelbe",100,250,"Eltern und Paten"]],
+        "grosseltern": [["sz_kommunion",20,50,"enger Familienkreis"],["spk",100,200,"Familie und Paten"],["gelbe",null,50,"nahe Verwandte: bis 50 €, selten bis 100 €"]],
+        "tante": [["sz_kommunion",20,50,"enger Familienkreis"],["spk",100,200,"Familie und Paten"],["gelbe",null,50,"nahe Verwandte: bis 50 €, selten bis 100 €"]],
+        "freunde": [["sz_kommunion",10,20,""],["spk",50,100,"Freundeskreis"]],
+        "bekannte": [["sz_kommunion",5,10,"Nachbarn, Bekannte, entfernte Verwandte"],["spk",5,20,""],["gelbe",10,20,"entfernte Verwandte, Nachbarn, Bekannte"]]
+      }},
+    "konfirmation": {"name": "Konfirmation", "zur": "zur Konfirmation", "saison": "März bis Mai",
+      "werte": {
+        "eltern": [["sz_konf",100,200,"enge Familie und Paten"],["h24_konf",100,300,""],["spk",100,200,"Familie und Paten"],["gelbe",100,250,"Eltern und Paten"]],
+        "pate": [["sz_konf",100,200,"enge Familie und Paten"],["biallo",100,300,""],["h24_konf",75,150,""],["spk",100,200,"Familie und Paten"],["gelbe",100,250,"Eltern und Paten"]],
+        "grosseltern": [["sz_konf",100,200,"enge Familie und Paten"],["biallo",100,500,""],["h24_konf",100,200,""],["spk",100,200,"Familie und Paten"],["gelbe",null,50,"nahe Verwandte: bis 50 €, selten bis 100 €"]],
+        "tante": [["sz_konf",100,200,"enge Familie"],["biallo",50,250,""],["h24_konf",50,100,"Tanten, Onkel, enge Verwandte"],["spk",100,200,"Familie"],["gelbe",null,50,"nahe Verwandte: bis 50 €, selten bis 100 €"]],
+        "freunde": [["sz_konf",50,100,"enge Freunde"],["biallo",10,50,"Freunde der Familie"],["h24_konf",20,50,"Freunde und Bekannte"],["spk",50,100,"Freundeskreis"]],
+        "kollegen": [["sz_konf",25,50,"Kollegen und Bekannte"]],
+        "bekannte": [["sz_konf",5,20,"entfernte Bekannte und Nachbarn"],["biallo",10,50,"Nachbarn und Bekannte"],["h24_konf",20,50,"Freunde und Bekannte"],["spk",5,20,""],["gelbe",10,20,"entfernte Verwandte, Nachbarn, Bekannte"]]
+      }},
+    "firmung": {"name": "Firmung", "zur": "zur Firmung", "saison": "meist Frühjahr bis Sommer",
+      "werte": {
+        "eltern": [["spk",100,200,"Familie und Paten"]],
+        "pate": [["biallo",100,300,""],["spk",100,200,"Familie und Paten"]],
+        "grosseltern": [["biallo",100,500,""],["spk",100,200,"Familie und Paten"],["gelbe",100,150,"enge Verwandte"]],
+        "tante": [["biallo",50,250,""],["spk",100,200,"Familie"],["gelbe",100,150,"enge Verwandte"]],
+        "freunde": [["biallo",10,50,"Freunde der Familie"],["spk",50,100,"Freundeskreis"]],
+        "bekannte": [["biallo",10,50,"Nachbarn und Bekannte"],["spk",5,20,""]]
+      }},
+    "jugendweihe": {"name": "Jugendweihe", "zur": "zur Jugendweihe", "saison": "März bis Juni",
+      "werte": {
+        "eltern": [["berl",100,150,"oder ein besonderer Wunsch"],["spk",100,200,"Familie und Paten"]],
+        "pate": [["biallo",100,300,""],["spk",100,200,"Familie und Paten"]],
+        "grosseltern": [["biallo",100,500,""],["berl",50,100,"Verwandte"],["spk",100,200,"Familie"]],
+        "tante": [["biallo",50,250,""],["berl",50,100,"Verwandte"],["spk",100,200,"Familie"]],
+        "freunde": [["biallo",10,50,"Freunde, Nachbarn, Bekannte"],["spk",50,100,"Freundeskreis"]],
+        "bekannte": [["biallo",10,50,"Freunde, Nachbarn, Bekannte"],["berl",10,20,""],["spk",5,20,""]]
+      }},
+    "einschulung": {"name": "Einschulung", "zur": "zur Einschulung", "saison": "August und September",
+      "werte": {
+        "eltern": [["sz_einschulung",50,100,""],["spk",100,null,"„Familie: ab 100 €“"]],
+        "grosseltern": [["spk",100,null,"„Familie: ab 100 €“; laut Stuttgarter Zeitung oft etwas großzügiger als die Eltern"]],
+        "pate": [["spk",100,null,"„Familie: ab 100 €“"]],
+        "tante": [["sz_einschulung",20,50,"andere Verwandte"],["spk",100,null,"„Familie: ab 100 €“"]],
+        "freunde": [["sz_einschulung",20,50,"Freunde der Familie"],["spk",25,50,"Freundeskreis"]],
+        "bekannte": [["spk",5,20,""]]
+      }},
+    "abitur": {"name": "Abitur", "zur": "zum Abitur", "saison": "Juni und Juli",
+      "werte": {
+        "eltern": [["sz_abitur",100,200,"„und mehr“"],["spk",100,null,"„Familie: ab 100 €“"]],
+        "grosseltern": [["sz_abitur",50,100,"„und mehr“"],["spk",100,null,"„Familie: ab 100 €“"]],
+        "pate": [["spk",100,null,"„Familie: ab 100 €“"]],
+        "tante": [["sz_abitur",20,50,"sonstige Verwandte"],["spk",100,null,"„Familie: ab 100 €“"]],
+        "freunde": [["spk",25,50,"Freundeskreis"]],
+        "bekannte": [["sz_abitur",10,20,""],["spk",5,20,""]]
+      }},
+    "hochzeit": {"name": "Hochzeit", "zur": "zur Hochzeit", "saison": "Mai bis September", "jePerson": true,
+      "werte": {
+        "eltern": [["spk_hochzeit",200,500,""],["sz_hochzeit",100,500,"ab 100 €, im Schnitt 100–500 €"],["h24_hochzeit",300,null,"„oft 300 Euro und mehr“"]],
+        "grosseltern": [["spk_hochzeit",100,150,"enge Familie"],["h24_hochzeit",300,null,"„oft 300 Euro und mehr“"]],
+        "geschwister": [["spk_hochzeit",100,150,"enge Familie"],["sz_hochzeit",75,null,"„ab 75 Euro“"],["h24_hochzeit",150,250,"enge Freunde oder Geschwister"]],
+        "tante": [["spk_hochzeit",50,100,"entferntere Familie"],["sz_hochzeit",50,250,"weitere Verwandte (Tanten, Onkel, Cousins, Paten); Tante und Onkel oft 100–150 €"]],
+        "pate": [["sz_hochzeit",50,250,"weitere Verwandte einschließlich Paten"]],
+        "trauzeuge": [["spk_hochzeit",100,200,""],["sz_hochzeit",75,250,""],["h24_hochzeit",300,null,"„oft 300 Euro und mehr“"]],
+        "engefreunde": [["spk_hochzeit",100,150,"enge Freunde, enge Familie"],["sz_hochzeit",50,100,"Freunde je nach Nähe"],["h24_hochzeit",150,250,""]],
+        "freunde": [["spk_hochzeit",50,100,"entferntere Freunde"],["sz_hochzeit",50,100,""],["h24_hochzeit",100,150,"Freunde oder Cousins"]],
+        "kollegen": [["spk_hochzeit",20,50,"ohne Einladung zum Essen, etwa nur Standesamt"],["sz_hochzeit",50,100,"Kollegen oder Nachbarn"],["h24_hochzeit",50,100,"Kollegen oder Bekannte"]],
+        "bekannte": [["sz_hochzeit",50,100,"Kollegen oder Nachbarn"],["h24_hochzeit",50,100,"Kollegen oder Bekannte"]]
+      }},
+    "geburtstag18": {"name": "18. Geburtstag", "zur": "zum 18. Geburtstag", "saison": "ganzjährig",
+      "werte": {
+        "tante": [["sz_geburtstag",20,50,"Erwachsene allgemein: häufig 20–50 €"]],
+        "freunde": [["sz_geburtstag",20,50,"Erwachsene allgemein: häufig 20–50 €"]],
+        "kollegen": [["sz_geburtstag",20,50,"Erwachsene allgemein: häufig 20–50 €"]],
+        "bekannte": [["sz_geburtstag",20,50,"Erwachsene allgemein: häufig 20–50 €"]]
+      },
+      "ohneBetrag": "Eltern, Großeltern und Paten geben laut Stuttgarter Zeitung meist mehr als andere, einen Betrag nennt sie dafür nicht. Eine dort genannte Faustregel: das Alter abrunden, zum 18. also 20 €."},
+    "weihnachten": {"name": "Weihnachten", "zur": "zu Weihnachten", "saison": "Dezember", "werte": {},
+      "ohneBetrag": "Für Weihnachten nennen die Ratgeber von Sparkasse und ING keine Beträge je Verwandtschaft: Es komme auf die Nähe, das eigene Budget und die Absprache mit den Eltern an."}
+  },
+  "taschengeld": [
+    ["u6","unter 6 Jahre",1,2,"Woche"],
+    ["6","6–7 Jahre",2,3,"Woche"],
+    ["8","8–9 Jahre",3,4,"Woche"],
+    ["10","10–11 Jahre",15,25,"Monat"],
+    ["12","12–13 Jahre",20,30,"Monat"],
+    ["14","14–15 Jahre",25,45,"Monat"],
+    ["16","16–17 Jahre",40,60,"Monat"],
+    ["18","ab 18 Jahre",55,75,"Monat"]
+  ],
+  "hde": {"budget": 262, "vorjahr": 263, "unter100": 28, "jahr": 2026},
+  "hochzeitRegel": {"quelle": "spk_hochzeit", "lo": 50, "hi": 100, "kinderAnteil": 0.5}
+}

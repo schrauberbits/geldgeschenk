@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wie viel Geld schenkt man? Geldgeschenk-Kompass für Taufe, Konfirmation, Hochzeit, Weihnachten</title>
+<meta name="description" content="Wie viel Geld ist üblich – zur Taufe, Kommunion, Konfirmation, Firmung, Jugendweihe, Einschulung, zum Abitur, zur Hochzeit, zum 18. Geburtstag und zu Weihnachten? Übliche Spanne nach Nähe und eigener Lage, mit Quellen. Dazu: gemeinsames Geschenk aufteilen und Weihnachtsbudget verteilen.">
+<link rel="canonical" href="https://schrauberbits.github.io/geldgeschenk/">
+<style>{{CSS}}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:9px 14px;font:inherit;font-size:.92rem;cursor:pointer;min-height:44px}
+.pill.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.step{font-size:.85rem;color:var(--muted);margin:16px 0 6px;font-weight:600}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.field span{display:block;font-size:.82rem;color:var(--muted);margin-bottom:4px}
+input[type=number],input[type=text]{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;height:48px;width:100%}
+input:focus,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.answer{margin-top:18px;border-radius:18px;padding:18px;background:var(--accent-soft)}
+.answer .lbl{font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.answer .say{font-size:1.45rem;font-weight:700;line-height:1.25;margin:6px 0 8px;color:var(--accent)}
+.answer.leer .say{font-size:1.15rem}
+.list{margin:12px 0 0;padding:0;list-style:none}
+.list li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid color-mix(in srgb,var(--ink) 12%,transparent);font-size:.95rem}
+.list li b{white-space:nowrap}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.btn{border:1px solid var(--accent);cursor:pointer;font:inherit;font-weight:600;min-height:46px}
+.btn.ghost{background:transparent;color:var(--accent)}
+.msg{font-size:.88rem;color:var(--ok);align-self:center}
+.news{background:var(--warn-soft);border-radius:14px;padding:12px 14px;font-size:.92rem;margin:0 0 14px}
+.schnell{list-style:none;padding:0;margin:0 0 6px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.schnell li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;font-size:.88rem}
+.schnell b{display:block;font-size:1.1rem;color:var(--accent)}
+.tabs{display:flex;gap:8px;margin:18px 0 4px;flex-wrap:wrap}
+.tabs a{border:1px solid var(--line);border-radius:999px;padding:8px 14px;text-decoration:none;background:var(--card);font-size:.92rem}
+.tabs a.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.zeile{display:grid;grid-template-columns:1fr 130px 40px;gap:8px;align-items:center;margin-top:8px}
+.zeile select{font:inherit;height:48px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:0 8px}
+.x{background:none;border:1px solid var(--line);border-radius:10px;height:44px;cursor:pointer;color:var(--muted);font-size:1.1rem}
+details.fine{margin-top:14px;border-top:1px solid color-mix(in srgb,var(--ink) 15%,transparent);padding-top:10px}
+details.fine summary{cursor:pointer;color:var(--accent);font-weight:600}
+.hide{display:none!important}
+table.uebersicht td,table.uebersicht th{padding:8px 6px;font-size:.85rem}
+@media print{.tabs,.actions,.pills,.step,.fields,.zeile .x,footer,#statisch,.news,.schnell,h1,.sub{display:none!important}body{background:#fff}}
+</style>
+{{GC}}
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a class="brand" href="./">💌 Geldgeschenk-Kompass</a></div>
+  <h1>Wie viel Geld schenkt man?</h1>
+  <p class="sub">Übliche Beträge für deinen Anlass, deine Nähe zur beschenkten Person und deine Lage – aus mehreren Ratgebern, mit Quellen. Immer Orientierung, nie Pflicht.</p>
+  <ul class="schnell">{{SCHNELL}}</ul>
+  <div id="saison"></div>
+  <div class="tabs" id="tabs"><a href="#rechner" data-t="rechner">Wie viel ist üblich?</a><a href="#gemeinsam" data-t="gemeinsam">Gemeinsam schenken</a><a href="#budget" data-t="budget">Weihnachtsbudget</a></div>
+  <main id="app"><noscript><p class="hint">Der Rechner braucht JavaScript. Die Übersicht und die Antwortseiten unten funktionieren auch ohne.</p></noscript></main>
+  <section id="statisch">
+    <h2>Übersicht: übliche Beträge</h2>
+    {{UEBERSICHT}}
+    <h2>Antworten nach Anlass</h2>
+    <div class="links">{{LINKS}}</div>
+  </section>
+  {{FUSS}}
+</div>
+<script>
+const D={{DATEN}};
+const app=document.getElementById('app');
+const num=v=>{const n=parseFloat(String(v).replace(',','.'));return isFinite(n)?n:0};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const eur=x=>Math.round(x).toLocaleString('de-DE')+' €';
+const r5=x=>Math.round(x/5)*5;
+
+// ---------- Zählen: ein Ereignis, sobald der Besucher selbst etwas auswählt oder ändert ----------
+const REF=((new URLSearchParams(location.search).get('ref')||'ohne').replace(/[^a-z0-9_-]/gi,'').slice(0,40))||'ohne';
+const REF_W=/-w$/.test(REF)?REF:REF+'-w';
+let genutzt=false;
+function senden(path,title,versuch){
+  try{ if(window.goatcounter&&window.goatcounter.count){ window.goatcounter.count({path,title,event:true}); return; } }catch(e){ return; }
+  if(versuch<40) setTimeout(()=>senden(path,title,versuch+1),250);
+}
+function nutzung(e){
+  if(genutzt||!e.isTrusted) return;
+  const t=e.target; if(!(t instanceof Element)) return;
+  if(!(t.matches('input,select')||t.closest('.pill,[data-cnt]'))) return;
+  if(e.type==='click'&&t.matches('input[type=number],input[type=text],select')) return; // bloßes Antippen eines Feldes zählt nicht
+  genutzt=true; senden('geld-nutzung--'+REF,'Geldgeschenk-Kompass: selbst ausgewählt ('+REF+')',0);
+}
+['input','change','click'].forEach(ev=>app.addEventListener(ev,nutzung,true));
+
+// ---------- Hash: #bereich?wert=… ----------
+function hashTeile(){ const h=location.hash.slice(1), i=h.indexOf('?'); return {seite:i<0?h:h.slice(0,i), p:new URLSearchParams(i<0?'':h.slice(i+1))}; }
+function query(o){ const q=new URLSearchParams(); for(const [k,v] of Object.entries(o)) q.set(k,v); return q.toString(); }
+function hashSetzen(seite,o){ history.replaceState(null,'',location.pathname+location.search+'#'+seite+'?'+query(o)); }
+function teilLink(seite,o){ return location.origin+location.pathname+'?ref='+REF_W+'#'+seite+'?'+query(o); }
+const pills=(id,list,sel)=>`<div class="pills" id="${id}">${list.map(p=>`<button class="pill${String(p[0])===String(sel)?' on':''}" data-v="${esc(p[0])}">${esc(p[1])}</button>`).join('')}</div>`;
+function pillGroup(id,cb){const el=document.getElementById(id); if(!el) return; el.addEventListener('click',e=>{const b=e.target.closest('.pill');if(!b)return;cb(b.dataset.v);});}
+const feld=(id,label,val,step)=>`<label class="field"><span>${label}</span><input type="number" id="${id}" value="${esc(val)}" min="0" step="${step||1}" inputmode="decimal"></label>`;
+function teilen(btnId,msgId,titel,text,url){
+  const b=document.getElementById(btnId); if(!b) return;
+  b.onclick=async()=>{
+    try{ if(navigator.share){ await navigator.share({title:titel,text,url}); return; } }catch(e){ if(e&&e.name==='AbortError') return; }
+    try{ await navigator.clipboard.writeText(text+'\n'+url); }catch(e){ prompt('Link kopieren:',url); return; }
+    const m=document.getElementById(msgId); m.classList.remove('hide'); setTimeout(()=>m.classList.add('hide'),2500); };
+}
+function tabs(t){ document.querySelectorAll('#tabs a').forEach(a=>a.classList.toggle('on',a.dataset.t===t)); }
+const kernTxt=k=>!k?'–':(k[1]==null?'ab '+eur(k[0]):k[0]+'–'+eur(k[1]));
+function spanneTxt(sp){ const [lo,hi,offen]=sp; const t=[]; if(lo!=null&&hi!=null)t.push(lo+'–'+eur(hi)); else if(hi!=null)t.push('bis '+eur(hi)); else if(lo!=null)t.push('ab '+eur(lo));
+  if(offen!=null&&(hi==null||offen>=hi))t.push('einzelne Quellen: „'+offen+' € und mehr“'); else if(offen!=null)t.push('eine Quelle: „ab '+offen+' €“'); return t.join('; '); }
+
+// ---------- Saison-Hinweis ----------
+(()=>{const m=new Date().getMonth(); if(m===10||m===11){ document.getElementById('saison').innerHTML='<div class="news"><b>Weihnachten:</b> Für Geldgeschenke zu Weihnachten nennen Ratgeber keinen festen Betrag je Verwandtschaft. <a href="#rechner?anlass=weihnachten">Bezugsgrößen ansehen</a> oder <a href="#budget">dein Budget auf alle verteilen</a>.</div>'; }})();
+
+// ================= Wie viel ist üblich? =================
+const R={anlass:'taufe',naehe:'pate',lage:'beruf',wer:'allein',erw:2,kinder:0,n:3,alter:'10'};
+const LAGEN=[['schule','Schüler'],['azubi','Azubi oder Student'],['beruf','Berufstätig']];
+const WER=[['allein','Allein'],['paar','Als Paar'],['familie','Als Familie'],['gemeinsam','Mit anderen zusammen']];
+function rollenFuer(aid){ const A=D.anlaesse[aid]; const r=Object.keys(D.rollen).filter(k=>k in A.werte); if(aid==='geburtstag18') return ['eltern','grosseltern','pate'].concat(r); return r; }
+function rechner(p){
+  tabs('rechner');
+  if(p){ for(const k of Object.keys(R)){ if(!p.has(k)) continue; const v=p.get(k); R[k]=typeof R[k]==='number'?Math.max(0,Math.min(99,Math.round(num(v)))):String(v).replace(/[^a-z0-9]/gi,'').slice(0,20); } }
+  if(!D.anlaesse[R.anlass]) R.anlass='taufe';
+  const A=D.anlaesse[R.anlass];
+  const rollen=rollenFuer(R.anlass);
+  if(R.anlass!=='weihnachten'&&!rollen.includes(R.naehe)) R.naehe=rollen.includes('pate')?'pate':rollen[0];
+  const weih=R.anlass==='weihnachten';
+  app.innerHTML=`<div class="step">1. Anlass</div>${pills('pa',Object.entries(D.anlaesse).map(([k,v])=>[k,v.name]),R.anlass)}
+  ${weih?`<div class="step">2. Alter des Kindes (Bezugsgröße Taschengeld)</div>${pills('palt',D.taschengeld.map(t=>[t[0],t[1]]),R.alter)}`
+        :`<div class="step">2. Wer bist du für die beschenkte Person?</div>${pills('pn',rollen.map(k=>[k,D.rollen[k]]),R.naehe)}
+  <div class="step">3. Deine Lage</div>${pills('pl',LAGEN,R.lage)}
+  <div class="step">4. Du schenkst …</div>${pills('pw',WER,R.wer)}
+  <div class="fields ${R.wer==='familie'&&A.jePerson?'':'hide'}">${feld('erw','Erwachsene',R.erw)}${feld('kin','Kinder mit eigenem Essen',R.kinder)}</div>
+  <div class="fields ${R.wer==='gemeinsam'?'':'hide'}">${feld('nn','Wie viele schenken zusammen?',R.n)}</div>`}
+  <div id="erg"></div>`;
+  pillGroup('pa',v=>{R.anlass=v;rechner();});
+  pillGroup('pn',v=>{R.naehe=v;rechner();});
+  pillGroup('pl',v=>{R.lage=v;rechner();});
+  pillGroup('pw',v=>{R.wer=v;rechner();});
+  pillGroup('palt',v=>{R.alter=v;rechner();});
+  [['erw','erw'],['kin','kinder'],['nn','n']].forEach(([id,k])=>{const el=document.getElementById(id); if(el) el.addEventListener('input',()=>{R[k]=Math.max(0,Math.min(99,Math.round(num(el.value))));ergebnis();});});
+  ergebnis();
+}
+function ergebnis(){
+  const A=D.anlaesse[R.anlass], el=document.getElementById('erg');
+  const zust=R.anlass==='weihnachten'?{anlass:R.anlass,alter:R.alter}:{anlass:R.anlass,naehe:R.naehe,lage:R.lage,wer:R.wer,erw:R.erw,kinder:R.kinder,n:R.n};
+  hashSetzen('rechner',zust);
+  let say='',mehr='',liste='',quellen='',teiltext='';
+  if(R.anlass==='weihnachten'){
+    const t=D.taschengeld.find(x=>x[0]===R.alter)||D.taschengeld[3];
+    say='Kein üblicher Betrag je Verwandtschaft';
+    mehr=`${esc(A.ohneBetrag)}<ul class="list"><li><span>Empfohlenes Taschengeld, ${esc(t[1])} (DJI)</span><b>${t[2]}–${t[3]} € pro ${esc(t[4])}</b></li><li><span>Geplante Ausgaben für alle Weihnachtsgeschenke zusammen, Durchschnitt ${D.hde.jahr}</span><b>${D.hde.budget} €</b></li><li><span>Anteil, der weniger als 100 € einplant</span><b>${D.hde.unter100} %</b></li></ul>
+    <p class="hint">Das Taschengeld ist kein Richtwert für Geschenke, aber eine Hilfe zum Einordnen: Es zeigt, was ein Kind in diesem Alter laut Deutschem Jugendinstitut regelmäßig bekommen sollte. Ein Ratgeber der Stuttgarter Zeitung empfiehlt diese Bezugsgröße für Geldgeschenke zu Ostern.</p>
+    <div class="actions"><a class="btn" data-cnt href="#budget">Budget auf alle Beschenkten verteilen</a></div>`;
+    quellen=['spk','dji','hde','sz_geburtstag'];
+    teiltext=`Geld zu Weihnachten: kein fester Betrag, Bezugsgröße Taschengeld ${t[1]}: ${t[2]}–${t[3]} € pro ${t[4]}.`;
+  } else {
+    const w=A.werte[R.naehe];
+    if(!w){
+      say='Kein Betrag in den Quellen';
+      mehr=esc(A.ohneBetrag||'Für diese Nähe nennt keiner der Ratgeber einen Betrag.');
+      quellen=[];
+    } else {
+      const a=w.a, k=a.kern; let f=1, fTxt='';
+      if(A.jePerson&&R.wer==='paar'){ f=2; fTxt=' für euch beide'; }
+      if(A.jePerson&&R.wer==='familie'){ f=R.erw+R.kinder*D.hochzeitRegel.kinderAnteil; fTxt=` für ${R.erw} Erwachsene${R.kinder?' und '+R.kinder+' Kinder (je etwa die Hälfte)':''}`; }
+      const kk=k?[r5(k[0]*f),k[1]==null?null:r5(k[1]*f)]:null;
+      say=(R.lage==='beruf'?'Üblich: ':'Üblich: ')+kernTxt(kk)+fTxt;
+      const lageTxt=R.lage==='beruf'?'':`<p><b>${R.lage==='schule'?'Als Schüler':'Als Azubi oder Student'}:</b> Mit dem unteren Ende (${k?eur(r5(k[0]*f)):'–'}) liegst du gut. Die Ratgeber betonen: Wer sich ein großes Geldgeschenk nicht leisten kann, schenkt, was möglich ist – oder schenkt mit anderen zusammen.</p>`;
+      let werTxt='';
+      if(!A.jePerson&&(R.wer==='paar'||R.wer==='familie')) werTxt='<p class="hint">Die Ratgeber nennen für diesen Anlass Beträge je Geschenk; einen eigenen Wert für Paare oder Familien nennen sie nicht.</p>';
+      if(A.jePerson&&R.wer!=='gemeinsam') werTxt+=`<p class="hint">Hochzeit: Beträge gelten je Person. Faustregel der Sparkasse: etwa der Wert des eigenen Essens und der Getränke, meist ${D.hochzeitRegel.lo}–${D.hochzeitRegel.hi} € je Person; Kinder mit vollem Menü etwa die Hälfte.</p>`;
+      let gem='';
+      if(R.wer==='gemeinsam'&&k){ const n=Math.max(2,R.n); const mitte=k[1]==null?k[0]:(k[0]+k[1])/2; const ges=r5(mitte*n);
+        werTxt+=`<p>Gibt jeder etwa die Mitte (${eur(mitte)}), kommen bei ${n} Personen rund <b>${eur(ges)}</b> zusammen.</p>`;
+        gem=`<a class="btn" data-cnt href="#gemeinsam?gesamt=${ges}&n=${n}">Gemeinsames Geschenk aufteilen</a>`; }
+      mehr=`Mitte aus ${a.n} ${a.n===1?'Ratgeber':'Ratgebern'}${A.jePerson?' (je Person)':''}; insgesamt nennen sie ${esc(spanneTxt(a.spanne))}.${lageTxt}${werTxt}
+      <details class="fine"><summary>Was die Ratgeber genau nennen</summary><ul class="list">${w.q.map(([q,lo,hi,no])=>`<li><span>${esc(D.quellen[q].name.split(':')[0])}${no?' – '+esc(no):''}<br><span class="hint">Stand ${esc(D.quellen[q].stand)}</span></span><b>${lo!=null&&hi!=null?lo+'–'+hi+' €':(lo!=null?'ab '+lo+' €':'bis '+hi+' €')}</b></li>`).join('')}</ul></details>
+      ${A.ohneBetrag?`<p class="hint">${esc(A.ohneBetrag)}</p>`:''}${gem?`<div class="actions">${gem}</div>`:''}`;
+      quellen=[...new Set(w.q.map(x=>x[0]))];
+      teiltext=`${D.rollen[R.naehe]} ${A.zur}: üblich ${kernTxt(kk)}${fTxt} (Mitte aus ${a.n} Ratgebern, Orientierung, keine Pflicht).`;
+    }
+  }
+  el.innerHTML=`<div class="answer${say.startsWith('Kein')?' leer':''}"><div class="lbl">${esc(A.name)}${R.anlass==='weihnachten'?'':' · '+esc(D.rollen[R.naehe])}</div><div class="say">${esc(say)}</div><div class="more">${mehr}</div>
+  <div class="actions"><button class="btn" data-cnt id="share">Ergebnis teilen</button><span class="msg hide" id="sharemsg">Link kopiert</span></div>
+  ${quellen.length?`<details class="fine"><summary>Quellen</summary><ul class="q">${quellen.map(q=>`<li><a href="${esc(D.quellen[q].url)}" target="_blank" rel="noopener">${esc(D.quellen[q].name)}</a> (Stand ${esc(D.quellen[q].stand)})</li>`).join('')}</ul></details>`:''}</div>`;
+  teilen('share','sharemsg','Geldgeschenk-Kompass',teiltext||'Wie viel Geld schenkt man?',teilLink('rechner',zust));
+}
+
+// ================= Gemeinsam schenken =================
+const G={gesamt:100,n:3,namen:[],ok:''};
+const nameSauber=s=>String(s).replace(/[^A-Za-zÄÖÜäöüß0-9 .\-]/g,'').trim().slice(0,30);
+function gemeinsam(p){
+  tabs('gemeinsam');
+  if(p){ if(p.has('gesamt')) G.gesamt=Math.max(0,num(p.get('gesamt'))); if(p.has('n')) G.n=Math.max(2,Math.min(50,Math.round(num(p.get('n')))));
+    if(p.has('namen')) G.namen=p.get('namen').split(',').map(nameSauber).slice(0,50); if(p.has('ok')) G.ok=p.get('ok').replace(/[^01]/g,'').slice(0,50); }
+  app.innerHTML=`<h2>Gemeinsam schenken</h2><p class="hint">Gesamtbetrag eintragen, Zahl der Schenkenden, auf Wunsch die Namen – dann den Link an alle schicken. Wer bezahlt hat, wird abgehakt; der Stand steckt im Link, nirgends sonst.</p>
+  <div class="fields">${feld('gg','Gesamtbetrag in €',G.gesamt,5)}${feld('gn','Wie viele schenken zusammen?',G.n)}</div>
+  <label class="field" style="display:block;margin-top:10px"><span>Namen (mit Komma getrennt, freiwillig)</span><input type="text" id="gname" value="${esc(G.namen.join(', '))}" placeholder="z. B. Anna, Ben, Carla"></label>
+  <div id="gerg"></div>`;
+  document.getElementById('gg').addEventListener('input',e=>{G.gesamt=Math.max(0,num(e.target.value));gErg();});
+  document.getElementById('gn').addEventListener('input',e=>{G.n=Math.max(2,Math.min(50,Math.round(num(e.target.value))));gErg();});
+  document.getElementById('gname').addEventListener('input',e=>{G.namen=e.target.value.split(',').map(nameSauber).filter(Boolean).slice(0,50); if(G.namen.length>G.n){G.n=G.namen.length;document.getElementById('gn').value=G.n;} gErg();});
+  gErg();
+}
+function gErg(){
+  const n=Math.max(2,G.n), je=Math.ceil(G.gesamt/n), summe=je*n;
+  const zust={gesamt:G.gesamt,n,namen:G.namen.join(','),ok:G.ok};
+  hashSetzen('gemeinsam',zust);
+  const leute=Array.from({length:n},(_,i)=>G.namen[i]||('Person '+(i+1)));
+  const bezahlt=leute.filter((_,i)=>G.ok[i]==='1').length;
+  document.getElementById('gerg').innerHTML=`<div class="answer"><div class="lbl">Je Person</div><div class="say">${eur(je)}</div>
+  <div class="more">${eur(G.gesamt)} durch ${n} = ${(G.gesamt/n).toLocaleString('de-DE',{maximumFractionDigits:2})} €, aufgerundet auf ganze Euro. ${summe>G.gesamt?`Zusammen kommen so ${eur(summe)} – ${eur(summe-G.gesamt)} mehr als geplant, etwa für Karte oder Verpackung.`:''}</div>
+  <ul class="list">${leute.map((l,i)=>`<li><label style="display:flex;gap:10px;align-items:center"><input type="checkbox" data-i="${i}" ${G.ok[i]==='1'?'checked':''} style="width:22px;height:22px;accent-color:var(--accent)"> ${esc(l)}</label><b>${eur(je)}</b></li>`).join('')}</ul>
+  <p class="hint">${bezahlt} von ${n} haben bezahlt.</p>
+  <div class="actions"><button class="btn" data-cnt id="gshare">Link an alle schicken</button><button class="btn ghost" data-cnt onclick="window.print()">Drucken</button><span class="msg hide" id="gmsg">Link kopiert</span></div></div>`;
+  document.querySelectorAll('#gerg input[type=checkbox]').forEach(c=>c.addEventListener('change',()=>{const a=Array.from({length:n},(_,i)=>G.ok[i]==='1'?'1':'0'); a[+c.dataset.i]=c.checked?'1':'0'; G.ok=a.join('').replace(/0+$/,''); gErg();}));
+  teilen('gshare','gmsg','Gemeinsames Geschenk',`Gemeinsames Geschenk: ${eur(G.gesamt)} zu ${n}, das sind ${eur(je)} je Person.`,teilLink('gemeinsam',zust));
+}
+
+// ================= Weihnachtsbudget =================
+const B={gesamt:D.hde.budget,p:[['Person 1',2],['Person 2',1],['Person 3',1]]};
+function budget(p){
+  tabs('budget');
+  if(p){ if(p.has('gesamt')) B.gesamt=Math.max(0,num(p.get('gesamt')));
+    if(p.has('p')){ const l=p.get('p').split(',').map(x=>{const [n,w]=x.split('~');return [nameSauber(n)||'Person',Math.max(1,Math.min(3,Math.round(num(w))||1))];}).filter(x=>x[0]).slice(0,50); if(l.length) B.p=l; } }
+  app.innerHTML=`<h2>Weihnachtsbudget verteilen</h2><p class="hint">Trag ein, wie viel du insgesamt ausgeben willst, und wie groß jedes Geschenk sein soll. Vorgabe: ${D.hde.budget} € – so viel planen die Befragten ${D.hde.jahr} im Schnitt für alle Weihnachtsgeschenke ein (Umfrage im Auftrag des HDE); ${D.hde.unter100} % planen weniger als 100 €.</p>
+  <div class="fields">${feld('bg','Gesamtbudget in €',B.gesamt,5)}</div>
+  <div id="bzeilen"></div>
+  <div class="actions"><button class="btn ghost" data-cnt id="badd">+ Person</button></div>
+  <div id="berg"></div>`;
+  document.getElementById('bg').addEventListener('input',e=>{B.gesamt=Math.max(0,num(e.target.value));bErg();});
+  document.getElementById('badd').onclick=()=>{B.p.push(['Person '+(B.p.length+1),1]);bZeilen();};
+  bZeilen();
+}
+function bZeilen(){
+  const el=document.getElementById('bzeilen');
+  el.innerHTML=B.p.map((x,i)=>`<div class="zeile"><input type="text" data-n="${i}" value="${esc(x[0])}" aria-label="Name"><select data-w="${i}" aria-label="Größe des Geschenks"><option value="1"${x[1]===1?' selected':''}>kleiner</option><option value="2"${x[1]===2?' selected':''}>mittel (2×)</option><option value="3"${x[1]===3?' selected':''}>groß (3×)</option></select><button class="x" data-del="${i}" aria-label="Entfernen">×</button></div>`).join('');
+  el.querySelectorAll('[data-n]').forEach(i=>i.addEventListener('input',()=>{B.p[+i.dataset.n][0]=nameSauber(i.value)||'Person';bErg();}));
+  el.querySelectorAll('[data-w]').forEach(s=>s.addEventListener('change',()=>{B.p[+s.dataset.w][1]=+s.value;bErg();}));
+  el.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>{if(B.p.length>1){B.p.splice(+b.dataset.del,1);bZeilen();}}));
+  bErg();
+}
+function bErg(){
+  const sw=B.p.reduce((s,x)=>s+x[1],0), roh=B.p.map(x=>B.gesamt*x[1]/sw), ab=roh.map(Math.floor);
+  let rest=Math.round(B.gesamt-ab.reduce((s,x)=>s+x,0)); const ord=roh.map((x,i)=>[x-Math.floor(x),i]).sort((a,b)=>b[0]-a[0]);
+  for(let j=0;j<ord.length&&rest>0;j++,rest--) ab[ord[j][1]]++;
+  const zust={gesamt:B.gesamt,p:B.p.map(x=>x[0]+'~'+x[1]).join(',')};
+  hashSetzen('budget',zust);
+  document.getElementById('berg').innerHTML=`<div class="answer"><div class="lbl">So verteilt sich dein Budget</div><div class="say">${eur(B.gesamt)} für ${B.p.length} ${B.p.length===1?'Person':'Personen'}</div>
+  <ul class="list">${B.p.map((x,i)=>`<li><span>${esc(x[0])}</span><b>${eur(ab[i])}</b></li>`).join('')}</ul>
+  <p class="hint">Aufgeteilt nach den gewählten Größen (mittel = doppelt, groß = dreifach so viel wie klein), auf ganze Euro gerundet; die Summe ergibt genau das Budget.</p>
+  <div class="actions"><button class="btn" data-cnt id="bshare">Liste teilen</button><button class="btn ghost" data-cnt onclick="window.print()">Drucken</button><span class="msg hide" id="bmsg">Link kopiert</span></div></div>`;
+  teilen('bshare','bmsg','Weihnachtsbudget',`Weihnachtsbudget ${eur(B.gesamt)}: `+B.p.map((x,i)=>x[0]+' '+eur(ab[i])).join(', '),teilLink('budget',zust));
+}
+
+// ================= Steuerung =================
+function route(){
+  const {seite,p}=hashTeile();
+  if(seite==='gemeinsam') gemeinsam(p); else if(seite==='budget') budget(p); else rechner(p);
+}
+window.addEventListener('hashchange',()=>{ route(); document.getElementById('tabs').scrollIntoView({behavior:'smooth',block:'start'}); });
+route();
+</script>
+</body>
+</html>
